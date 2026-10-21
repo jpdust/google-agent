@@ -1,0 +1,32 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "angry_customer_delayed_order",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "This is the THIRD time my order has been delayed and nobody has helped me! I want a refund right now."}]
+      }
+    },
+    {
+      "eval_case_id": "confused_about_failed_payment",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "I don't understand why my subscription payment failed. Can you help me figure this out?"}]
+      }
+    },
+    {
+      "eval_case_id": "simple_friendly_greeting",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Hi there!"}]
+      }
+    },
+    {
+      "eval_case_id": "frustrated_return_runaround",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "I've been trying to return this item for weeks and keep getting the runaround. This is so frustrating."}]
+      }
+    }
+  ]
+}

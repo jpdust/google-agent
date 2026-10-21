@@ -1,0 +1,118 @@
+{
+  "users": [
+    {
+      "user_id": "u_1001",
+      "name": "Maria Chen",
+      "email": "maria.chen@example.com",
+      "tier": "gold",
+      "member_since": "2023-03-12"
+    },
+    {
+      "user_id": "u_1002",
+      "name": "Devon Lee",
+      "email": "devon.lee@example.com",
+      "tier": "standard",
+      "member_since": "2024-07-01"
+    }
+  ],
+  "orders": [
+    {
+      "order_id": "ORD-1007",
+      "user_id": "u_1001",
+      "items": ["Wireless Noise-Cancelling Headphones"],
+      "status": "shipped",
+      "total": 249.99,
+      "order_date": "2026-09-28",
+      "tracking_number": "TRK-48812990",
+      "carrier": "UPS",
+      "estimated_delivery": "2026-10-24"
+    },
+    {
+      "order_id": "ORD-1015",
+      "user_id": "u_1002",
+      "items": ["USB-C Charging Cable", "Phone Case"],
+      "status": "processing",
+      "total": 34.50,
+      "order_date": "2026-10-18",
+      "tracking_number": null,
+      "carrier": null,
+      "estimated_delivery": null
+    },
+    {
+      "order_id": "ORD-1022",
+      "user_id": "u_1001",
+      "items": ["Smart Watch"],
+      "status": "delivered",
+      "total": 199.00,
+      "order_date": "2026-09-01",
+      "tracking_number": "TRK-30091882",
+      "carrier": "FedEx",
+      "estimated_delivery": "2026-09-05"
+    }
+  ],
+  "subscriptions": [
+    {
+      "subscription_id": "SUB-5001",
+      "user_id": "u_1001",
+      "plan": "Pro Streaming",
+      "status": "active",
+      "renewal_date": "2026-11-15",
+      "price": "$14.99/month"
+    },
+    {
+      "subscription_id": "SUB-5002",
+      "user_id": "u_1002",
+      "plan": "Basic",
+      "status": "canceled",
+      "renewal_date": null,
+      "price": "$4.99/month",
+      "canceled_date": "2026-10-01"
+    }
+  ],
+  "return_policies": [
+    {
+      "policy_id": "RP-ELECTRONICS",
+      "category": "electronics",
+      "window_days": 30,
+      "conditions": "Item must be unused and in original packaging. A 15% restocking fee applies to opened electronics."
+    },
+    {
+      "policy_id": "RP-APPAREL",
+      "category": "apparel",
+      "window_days": 45,
+      "conditions": "Tags must be attached; items must be unworn and unwashed."
+    },
+    {
+      "policy_id": "RP-DIGITAL",
+      "category": "digital_subscriptions",
+      "window_days": 0,
+      "conditions": "Digital subscriptions are non-refundable once the billing cycle has started, except where required by law."
+    }
+  ],
+  "faqs": [
+    {
+      "faq_id": "FAQ-1",
+      "question": "How do I reset my password?",
+      "answer": "Go to Account Settings > Security > Reset Password, and follow the emailed link. The link expires after 24 hours.",
+      "tags": ["account", "password", "login"]
+    },
+    {
+      "faq_id": "FAQ-2",
+      "question": "How do I cancel my subscription?",
+      "answer": "Go to Account Settings > Subscriptions > Manage, then select Cancel. Cancellation takes effect at the end of the current billing cycle.",
+      "tags": ["subscription", "billing", "cancel"]
+    },
+    {
+      "faq_id": "FAQ-3",
+      "question": "What payment methods are accepted?",
+      "answer": "We accept Visa, Mastercard, American Express, and PayPal. We do not currently support cryptocurrency.",
+      "tags": ["payment", "billing"]
+    },
+    {
+      "faq_id": "FAQ-4",
+      "question": "How long does standard shipping take?",
+      "answer": "Standard shipping takes 5-7 business days within the continental US. Expedited shipping (2-3 business days) is available at checkout.",
+      "tags": ["shipping", "delivery"]
+    }
+  ]
+}

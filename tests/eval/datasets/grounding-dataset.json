@@ -1,0 +1,45 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "order_status_and_tracking",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Can you tell me the status of my order ORD-1007, and is there a tracking number?"}]
+      },
+      "expected_facts": ["shipped", "TRK-48812990"]
+    },
+    {
+      "eval_case_id": "order_total_lookup",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What was the total charged for order ORD-1015?"}]
+      },
+      "expected_facts": ["34.50"]
+    },
+    {
+      "eval_case_id": "electronics_return_policy",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What's your return policy for electronics?"}]
+      },
+      "expected_facts": ["30", "15%"]
+    },
+    {
+      "eval_case_id": "faq_cancel_subscription",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "How do I cancel my subscription?"}]
+      },
+      "expected_facts": ["Account Settings", "billing cycle"]
+    },
+    {
+      "eval_case_id": "unknown_order_no_fabrication",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What's the status of order ORD-9999?"}]
+      },
+      "expected_facts": ["ORD-9999"],
+      "forbidden_facts": ["shipped", "delivered", "processing", "TRK-"]
+    }
+  ]
+}

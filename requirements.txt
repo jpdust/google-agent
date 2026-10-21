@@ -1,0 +1,16 @@
+# Pip-compatible mirror of the dependencies declared in pyproject.toml.
+# This project is managed with `uv` (see README.md: `agents-cli install` /
+# `uv sync`) — uv.lock is the source of truth for exact pinned versions.
+# Use this file only if you need a plain `pip install -r requirements.txt`
+# workflow.
+
+google-adk[gcp,otel-gcp,bigquery-analytics]>=2.8.0,<2.9.0
+opentelemetry-resourcedetector-gcp<=1.12.0a0
+gcsfs>=2024.11.0
+a2a-sdk[http-server]>=1.0,<2
+aiohttp>=3.13.4
+google-cloud-logging>=3.12.0,<4.0.0
+
+# Evaluation extras (tests/eval/) — omit if you only need to run the agent.
+google-adk[eval]>=2.8.0,<2.9.0
+google-cloud-aiplatform[evaluation]>=1.156.0,<2.0.0

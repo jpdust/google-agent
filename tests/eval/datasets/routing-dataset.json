@@ -1,0 +1,52 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "order_status_requires_lookup",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What's the status of order ORD-1007?"}]
+      },
+      "expects_delegation": true
+    },
+    {
+      "eval_case_id": "subscription_status_requires_lookup",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Is my subscription SUB-5002 still active?"}]
+      },
+      "expects_delegation": true
+    },
+    {
+      "eval_case_id": "return_policy_requires_lookup",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What's your return policy on apparel?"}]
+      },
+      "expects_delegation": true
+    },
+    {
+      "eval_case_id": "faq_requires_lookup",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What payment methods do you accept?"}]
+      },
+      "expects_delegation": true
+    },
+    {
+      "eval_case_id": "thanks_no_lookup_needed",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Thank you so much for your help today, have a great day!"}]
+      },
+      "expects_delegation": false
+    },
+    {
+      "eval_case_id": "capability_question_no_lookup_needed",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Hi, what kinds of things can you help me with?"}]
+      },
+      "expects_delegation": false
+    }
+  ]
+}

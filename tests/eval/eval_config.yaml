@@ -1,0 +1,46 @@
+metrics_to_run:
+  - custom_response_quality
+  - grounding_accuracy
+  - routing_accuracy
+  - tone_empathy
+
+custom_metrics:
+  # General-purpose LLM-as-judge (scaffold default). Kept as a catch-all
+  # quality signal; the three metrics below are the rubric-specific ones.
+  - name: custom_response_quality
+    custom_function_file: response_quality.py
+
+  # Rubric (a): Grounding & Datastore Accuracy.
+  # Deterministic — checks the response literally contains the facts the
+  # datastore holds for the case. Run against tests/eval/datasets/grounding-dataset.json.
+  - name: grounding_accuracy
+    custom_function_file: grounding_accuracy.py
+
+  # Rubric (b): Multi-step Sub-agent Routing Accuracy.
+  # Deterministic — checks the trace for a kb_retriever_agent tool call.
+  # Run against tests/eval/datasets/routing-dataset.json.
+  - name: routing_accuracy
+    custom_function_file: routing_accuracy.py
+
+  # Rubric (c): Response Tone & Empathy.
+  # LLM-as-judge — grades persona only, deliberately ignores factual content.
+  # Run against tests/eval/datasets/tone-dataset.json.
+  - name: tone_empathy
+    prompt_template: |
+      You are grading a customer-support reply for TONE and PERSONA only —
+      ignore whether the facts are correct, that is graded elsewhere.
+
+      Rate 1-5 on all of:
+      - Empathy: does it acknowledge how the customer feels when they sound
+        frustrated, confused, or upset?
+      - Politeness: is the language courteous and professional throughout?
+      - Directness: does it get to the point without hedging, padding, or
+        unnecessary repetition?
+
+      A 5 nails all three. A 1 is curt, robotic, or rambling.
+
+      Customer message: {prompt}
+      Agent response: {response}
+
+      Return JSON: {"score": <1|2|3|4|5>, "explanation": "<one sentence per criterion>"}
+    judge_model_sampling_count: 3
