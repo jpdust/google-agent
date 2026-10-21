@@ -97,6 +97,15 @@ google-agent/
 
 Step-by-step from a fresh clone to a working local environment.
 
+> **Copy-paste note:** every `bash` block below contains only commands meant
+> to run as-is — no comments mixed in. (zsh, unlike bash, doesn't treat `#`
+> as a comment in an interactive shell by default, so a pasted comment line
+> fails with `command not found: #` — harmless, but noisy. If you see that,
+> just ignore it or paste commands one at a time.) The commands assume your
+> shell is already in the project root (the directory containing this
+> README and `pyproject.toml`) — if you just cloned the repo, `cd` into it
+> first: `cd google-agent`.
+
 **1. Install prerequisites** — [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 (Python package manager) and `agents-cli` (wraps `adk` with install/eval/deploy
 helpers):
@@ -105,38 +114,47 @@ helpers):
 uv tool install google-agents-cli
 ```
 
-**2. Install project dependencies** (creates `.venv/` and installs everything
-pinned in `uv.lock`):
+**2. Install project dependencies** — creates `.venv/` and installs everything
+pinned in `uv.lock`:
 
 ```bash
-cd google-agent
 agents-cli install
-# equivalent: uv sync
-# pip-only, no uv: pip install -r requirements.txt
 ```
 
-**3. Configure model credentials** — edit `.env` and pick exactly one option:
+This is equivalent to running `uv sync` directly. If you don't use `uv` at
+all, `pip install -r requirements.txt` works too, but won't get the exact
+pinned/locked versions.
 
-```bash
-# Option A: Vertex AI (default). Requires a GCP project and:
-#   gcloud auth application-default login
+**3. Configure model credentials** — this is `.env` *file content* to edit,
+not a shell command to run. Open `.env` in an editor and set exactly one
+option:
+
+```
+# Option A: Vertex AI (default). Requires a GCP project and
+# `gcloud auth application-default login` beforehand.
 GOOGLE_GENAI_USE_VERTEXAI=true
 GOOGLE_CLOUD_PROJECT=your-gcp-project-id
 GOOGLE_CLOUD_LOCATION=global
 
-# Option B: Google AI Studio — comment out the three lines above, then:
+# Option B: Google AI Studio -- comment out the three lines above, then:
 GEMINI_API_KEY=your-api-key-here
 ```
 
-**4. Verify the build** — imports cleanly and the project is recognized:
+**4. Verify the build** — confirms the code imports cleanly and the project
+is recognized:
 
 ```bash
 uv run python -c "from app.agent import root_agent; print(root_agent.name)"
-# -> customer_support_orchestrator
-
-agents-cli info
-# -> Root agent name: customer_support_orchestrator, Agent directory: app
 ```
+
+Expect `customer_support_orchestrator` printed back.
+
+```bash
+agents-cli info
+```
+
+Expect `Root agent name: customer_support_orchestrator` and
+`Agent directory: app` in the output.
 
 ## Run
 
@@ -144,8 +162,11 @@ agents-cli info
 
 ```bash
 agents-cli run "What's the status of order ORD-1007?"
+```
 
-# Native ADK CLI, same effect:
+Native ADK CLI equivalent:
+
+```bash
 uv run adk run app
 ```
 
@@ -153,8 +174,11 @@ uv run adk run app
 
 ```bash
 agents-cli playground
+```
 
-# Native ADK CLI, same effect:
+Native ADK CLI equivalent:
+
+```bash
 uv run adk web
 ```
 
@@ -168,8 +192,9 @@ pair.
 
 ```bash
 uv run python -m app.fast_api_app
-# -> serves on http://0.0.0.0:8000 (REST, ADK web routes, and the A2A endpoint)
 ```
+
+Serves on `http://0.0.0.0:8000` (REST, ADK web routes, and the A2A endpoint).
 
 ## Swapping the Datastore
 
