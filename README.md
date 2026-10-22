@@ -138,9 +138,10 @@ This is equivalent to running `uv sync` directly. If you don't use `uv` at
 all, `pip install -r requirements.txt` works too, but won't get the exact
 pinned/locked versions.
 
-**3. Configure model credentials** — this is `.env` *file content* to edit,
-not a shell command to run. Open `.env` in an editor and set exactly one
-option:
+**3. Configure model credentials** — `.env` is gitignored and won't exist
+yet on a fresh clone, so create it yourself in the project root. This is
+`.env` *file content* to write, not a shell command to run. Create `.env`
+and set exactly one option:
 
 ```
 # Option A: Vertex AI (default). Requires a GCP project and
