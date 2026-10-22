@@ -21,7 +21,7 @@ from google.genai import types
 
 from app import tools
 
-MODEL = "gemini-3.8-flash"
+MODEL = "gemini-2.5-flash"
 
 
 kb_retriever_agent = Agent(

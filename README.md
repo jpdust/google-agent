@@ -114,6 +114,19 @@ helpers):
 uv tool install google-agents-cli
 ```
 
+If you plan to use Vertex AI (Option A in step 3 below), you'll also need the
+[Google Cloud CLI](https://cloud.google.com/sdk/docs/install) for
+`gcloud auth application-default login`. On macOS with
+[Homebrew](https://brew.sh/):
+
+```bash
+brew install --cask gcloud-cli
+```
+
+For other platforms, follow the
+[official install guide](https://cloud.google.com/sdk/docs/install). Skip this
+if you're using Option B (Google AI Studio) instead.
+
 **2. Install project dependencies** — creates `.venv/` and installs everything
 pinned in `uv.lock`:
 
@@ -163,6 +176,21 @@ Expect `Root agent name: customer_support_orchestrator` and
 ```bash
 agents-cli run "What's the status of order ORD-1007?"
 ```
+
+Each plain `agents-cli run` is a one-shot: it starts a temporary local
+server, sends the single message, then shuts the server (and its session)
+down — so it won't remember earlier turns. For a multi-turn conversation via
+the CLI, keep the server alive and resume the session explicitly:
+
+```bash
+agents-cli run "first message" --start-server
+agents-cli run "follow-up" --session-id <id-from-first-run>
+```
+
+A session only lives in that running server's memory, and an idle persistent
+server auto-restarts (resetting sessions) after 30 minutes. Stop it with
+`agents-cli run --stop-server`. For interactive back-and-forth without
+managing sessions by hand, use Option B instead.
 
 Native ADK CLI equivalent:
 
